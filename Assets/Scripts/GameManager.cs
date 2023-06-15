@@ -10,8 +10,14 @@ public class GameManager : Singleton<GameManager>
     public int points = 0;
     public TextMeshProUGUI scoreText;
 
+    
+    private AudioSource gameManagerSource;
+    public AudioClip buttonSound;
+
     public void StartGame()
     {
+        gameManagerSource = GetComponent<AudioSource>();
+
         Time.timeScale = 1;
     }
 
@@ -22,6 +28,8 @@ public class GameManager : Singleton<GameManager>
 
     public void RepeatGame()
     {
+        gameManagerSource.PlayOneShot(buttonSound);
+
         Time.timeScale = 1;
         SceneManager.LoadScene("Game");
     }
